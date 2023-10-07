@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.drive.advanced;
+package org.firstinspires.ftc.teamcode.TeleOp;
 
 import com.acmerobotics.roadrunner.geometry.Pose2d;
 import com.acmerobotics.roadrunner.geometry.Vector2d;
@@ -27,9 +27,9 @@ public class TeleOpFieldCentric extends LinearOpMode {
         // Velocity control per wheel is not necessary outside of motion profiled auto
         drive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
-        // Retrieve our pose from the PoseStorage.currentPose static field
-        // See AutoTransferPose.java for further details
-        drive.setPoseEstimate(PoseStorage.currentPose);
+//        // Retrieve our pose from the PoseStorage.currentPose static field
+//        // See AutoTransferPose.java for further details
+//        drive.setPoseEstimate(PoseStorage.currentPose);
 
         waitForStart();
 
