@@ -2,10 +2,12 @@ package org.firstinspires.ftc.teamcode.TeleOp;
 
 import com.acmerobotics.roadrunner.geometry.Pose2d;
 import com.acmerobotics.roadrunner.geometry.Vector2d;
+import com.qualcomm.ftccommon.configuration.RobotConfigResFilter;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
+//import org.firstinspires.ftc.teamcode.RobotCenterStage;
 import org.firstinspires.ftc.teamcode.drive.SampleMecanumDrive;
 
 /**
@@ -22,15 +24,13 @@ public class TeleOpFieldCentric extends LinearOpMode {
     public void runOpMode() throws InterruptedException {
         // Initialize SampleMecanumDrive
         SampleMecanumDrive drive = new SampleMecanumDrive(hardwareMap);
+        //RobotCenterStage robot = new RobotCenterStage();
+
+        double slow = 1.0;
 
         // We want to turn off velocity control for teleop
         // Velocity control per wheel is not necessary outside of motion profiled auto
         drive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-
-//        // Retrieve our pose from the PoseStorage.currentPose static field
-//        // See AutoTransferPose.java for further details
-//        drive.setPoseEstimate(PoseStorage.currentPose);
-
         waitForStart();
 
         if (isStopRequested()) return;
@@ -39,11 +39,17 @@ public class TeleOpFieldCentric extends LinearOpMode {
             // Read pose
             Pose2d poseEstimate = drive.getPoseEstimate();
 
-            // Create a vector from the gamepad x/y inputs
+            if(gamepad2.right_trigger != 0) {
+                slow = -0.35;
+            }
+            else {
+                slow = -0.8;
+            }
+                // Create a vector from the gamepad x/y inputs
             // Then, rotate that vector by the inverse of that heading
             Vector2d input = new Vector2d(
-                    -gamepad1.left_stick_y,
-                    -gamepad1.left_stick_x
+                    -gamepad1.left_stick_y*slow,
+                    -gamepad1.left_stick_x*slow
             ).rotated(-poseEstimate.getHeading());
 
             // Pass in the rotated input + right stick value for rotation
@@ -59,10 +65,28 @@ public class TeleOpFieldCentric extends LinearOpMode {
             // Update everything. Odometry. Etc.
             drive.update();
 
+            if(gamepad2.x){
+                drive.drone.setPosition(1);
+                drive.intake.setPosition(1);
+            }
+            if(gamepad2.y) {
+                drive.drone.setPosition(0);
+                drive.intake.setPosition(0);
+            }
+
             // Print pose to telemetry
             telemetry.addData("x", poseEstimate.getX());
             telemetry.addData("y", poseEstimate.getY());
             telemetry.addData("heading", poseEstimate.getHeading());
+            telemetry.addData("FL Encoder", drive.leftFront.getCurrentPosition());
+            telemetry.addData("RL Encoder", drive.leftRear.getCurrentPosition());
+            telemetry.addData("FR Encoder", drive.leftFront.getCurrentPosition());
+            telemetry.addData("RR Encoder", drive.leftRear.getCurrentPosition());
+            telemetry.addData("FL Power", drive.leftFront.getPower());
+            telemetry.addData("RL Power", drive.leftRear.getPower());
+            telemetry.addData("FR Power", drive.leftFront.getPower());
+            telemetry.addData("RR Power", drive.leftRear.getPower());
+
             telemetry.update();
         }
     }

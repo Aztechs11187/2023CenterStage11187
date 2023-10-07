@@ -150,12 +150,6 @@ public class RobotCenterStage {
         backLeftMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         backRightMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
-
-
-
-        //intake.setPosition(1);
-
-
         stopAllMotors();
         startDriveEncoderless();
         lifter.setTargetPositionTolerance(15);
@@ -172,9 +166,9 @@ public class RobotCenterStage {
         intake = hwMap.get(Servo.class,"intake_servo");
         drone = hwMap.get(Servo.class, "droneServo");
         DcMotor[] driveMotors = {frontLeftMotor, frontRightMotor, backLeftMotor, backRightMotor};
-        lifter = hwMap.get(DcMotorEx.class, "lifter");
-        lifterSwitch1 = hwMap.get(DigitalChannel.class, "lifter_switch_one");
-        lifterSwitch2 = hwMap.get(DigitalChannel.class, "lifter_switch_two");
+        //lifter = hwMap.get(DcMotorEx.class, "lifter");
+        //lifterSwitch1 = hwMap.get(DigitalChannel.class, "lifter_switch_one");
+        //lifterSwitch2 = hwMap.get(DigitalChannel.class, "lifter_switch_two");
         //leftEncoder = new Encoder(hwMap.get(DcMotorEx.class, "od_lf"));
         //rightEncoder = new Encoder(hwMap.get(DcMotorEx.class, "od_rt"));
         //frontEncoder = new Encoder(hwMap.get(DcMotorEx.class, "od_lat"));
