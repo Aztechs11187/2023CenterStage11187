@@ -40,10 +40,10 @@ public class TeleOpFieldCentric extends LinearOpMode {
             Pose2d poseEstimate = drive.getPoseEstimate();
 
             if(gamepad2.right_trigger != 0) {
-                slow = -0.35;
+                slow = 0.35;
             }
             else {
-                slow = -0.8;
+                slow = 1.0;
             }
                 // Create a vector from the gamepad x/y inputs
             // Then, rotate that vector by the inverse of that heading
@@ -65,6 +65,7 @@ public class TeleOpFieldCentric extends LinearOpMode {
             // Update everything. Odometry. Etc.
             drive.update();
 
+            //servo stuff
             if(gamepad2.x){
                 drive.drone.setPosition(1);
                 drive.intake.setPosition(1);
@@ -73,6 +74,13 @@ public class TeleOpFieldCentric extends LinearOpMode {
                 drive.drone.setPosition(0);
                 drive.intake.setPosition(0);
             }
+
+            //intake Motor stuff
+
+            drive.intakeMotor.setPower(-gamepad2.left_stick_y);
+
+            telemetry.addData("intake power", drive.intakeMotor.getPower());
+            telemetry.addData("intake encoder", drive.intakeMotor.getCurrentPosition());
 
             // Print pose to telemetry
             telemetry.addData("x", poseEstimate.getX());
