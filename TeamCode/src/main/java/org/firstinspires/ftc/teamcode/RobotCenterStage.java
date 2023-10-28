@@ -44,8 +44,13 @@ public class RobotCenterStage {
     public DcMotor frontRightMotor = null;
     public DcMotor backLeftMotor = null;
     public DcMotor backRightMotor = null;
-    public Servo intake = null;
+
+    public DcMotor intake = null;
+
+    public Servo wrist = null;
+    public Servo elbow = null;
     public Servo drone = null;
+
     public DcMotorEx lifter = null;
 
     public DigitalChannel lifterSwitch1 = null;
@@ -162,8 +167,10 @@ public class RobotCenterStage {
         frontRightMotor = hwMap.get(DcMotor.class, "rightFront");
         backLeftMotor = hwMap.get(DcMotor.class, "leftRear");
         backRightMotor = hwMap.get(DcMotor.class, "rightRear");
+        intake = hwMap.get(DcMotor.class, "intake");
         lifter = hwMap.get(DcMotorEx.class, "lifter");
-        intake = hwMap.get(Servo.class,"intake_servo");
+        wrist = hwMap.get(Servo.class,"wristServo");
+        elbow = hwMap.get(Servo.class,"elbowServo");
         drone = hwMap.get(Servo.class, "droneServo");
         DcMotor[] driveMotors = {frontLeftMotor, frontRightMotor, backLeftMotor, backRightMotor};
         //lifter = hwMap.get(DcMotorEx.class, "lifter");
@@ -182,7 +189,8 @@ public class RobotCenterStage {
         //backLeftMotor = hwMap.get(DcMotor.class, "leftRear");
         //backRightMotor = hwMap.get(DcMotor.class, "rightRear");
         lifter = hwMap.get(DcMotorEx.class, "lifter");
-        intake = hwMap.get(Servo.class,"intake_servo");
+        wrist = hwMap.get(Servo.class,"wrist_servo");
+        elbow = hwMap.get(Servo.class,"elbow_servo");
         drone = hwMap.get(Servo.class,"droneServo");
 
         DcMotor[] driveMotors = {frontLeftMotor, frontRightMotor, backLeftMotor, backRightMotor};
