@@ -29,7 +29,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 import org.firstinspires.ftc.teamcode.RobotCenterStage;
 //import org.firstinspires.ftc.teamcode.pipelines.AprilTagDetectionPipeline;
 
-
+@Disabled
 @Autonomous(name="LeftFar", group = "motion")
 public class LeftFar extends LinearOpMode{
     RobotCenterStage robot = new RobotCenterStage();

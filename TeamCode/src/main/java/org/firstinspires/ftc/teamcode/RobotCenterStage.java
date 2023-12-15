@@ -9,6 +9,7 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.DigitalChannel;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
@@ -89,9 +90,9 @@ public class RobotCenterStage {
         startDriveEncoders();
 
         frontLeftMotor.setDirection(DcMotor.Direction.REVERSE);
-        frontRightMotor.setDirection(DcMotor.Direction.FORWARD);
+        //frontRightMotor.setDirection(DcMotor.Direction.FORWARD);
         backLeftMotor.setDirection(DcMotor.Direction.REVERSE);
-        backRightMotor.setDirection(DcMotor.Direction.FORWARD);
+        //backRightMotor.setDirection(DcMotor.Direction.FORWARD);
 
         //lifter.setDirection(DcMotorSimple.Direction.REVERSE);
 
@@ -143,10 +144,10 @@ public class RobotCenterStage {
 
 
 
-        frontLeftMotor.setDirection(DcMotor.Direction.FORWARD);
-        frontRightMotor.setDirection(DcMotor.Direction.REVERSE);
-        backLeftMotor.setDirection(DcMotor.Direction.FORWARD);
-        backRightMotor.setDirection(DcMotor.Direction.REVERSE);
+        //frontLeftMotor.setDirection(DcMotor.Direction.REVERSE);
+        //frontRightMotor.setDirection(DcMotor.Direction.REVERSE);
+        //backLeftMotor.setDirection(DcMotor.Direction.REVERSE);
+        //backRightMotor.setDirection(DcMotor.Direction.REVERSE);
 
         //lifter.setDirection(DcMotorSimple.Direction.REVERSE);
 

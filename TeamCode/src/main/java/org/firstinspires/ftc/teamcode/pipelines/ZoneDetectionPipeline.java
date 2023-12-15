@@ -106,6 +106,8 @@ public class ZoneDetectionPipeline implements VisionProcessor {
         Imgproc.cvtColor(frame, frame, Imgproc.COLOR_RGB2HSV);
         // thats why you need to give your scalar upper and lower bounds as HSV values
 
+        Imgproc.medianBlur(frame, frame, 5);
+
         // this method makes the colour image black and white, with everything between your upper and lower bound values as white, and everything else black
         Core.inRange(frame, lower, upper, frame);
 

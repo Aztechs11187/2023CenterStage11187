@@ -14,7 +14,6 @@ import com.qualcomm.robotcore.util.Range;
 import org.firstinspires.ftc.teamcode.RobotCenterStage;
 import org.firstinspires.ftc.teamcode.drive.SampleMecanumDrive;
 
-@Disabled
 @TeleOp(name="TeleScrim2", group="Iterative Opmode")
 
 public class TeleScrim2 extends OpMode {
@@ -146,18 +145,22 @@ public class TeleScrim2 extends OpMode {
         //******************************************************************************************
 
         // Lifter implementation
+//
+//        if (getRuntime() > checkTimeL && getRuntime() < checkTimeH){
+//            if(robot.lifter.isBusy()) {
+//                robot.lifter.setPower(0);
+//            }
+//        }
+//
+//        //override for sahas driver 1
+//        if (gamepad1.right_trigger > 0.5 && movingLifter){      // lifter override
+//            robot.lifter.setPower(0);
+//            movingLifter = false;
+//        }
+        robot.lifter.setPower(lifterPower);
 
-        if (getRuntime() > checkTimeL && getRuntime() < checkTimeH){
-            if(robot.lifter.isBusy()) {
-                robot.lifter.setPower(0);
-            }
-        }
+        robot.intake.setPower(-gamepad2.right_stick_y);
 
-        //override for sahas driver 1
-        if (gamepad1.right_trigger > 0.5 && movingLifter){      // lifter override
-            robot.lifter.setPower(0);
-            movingLifter = false;
-        }
 
         //button debounce
         if(elbowStatus == elbowStates.Off && gamepad2.a){
@@ -178,8 +181,11 @@ public class TeleScrim2 extends OpMode {
             robot.wrist.setPosition(1);
         }
 
-        if(gamepad2.x && gamepad2.a){
-            robot.drone.setPosition(1);
+        if(gamepad2.x){
+            robot.lifter.setTargetPosition(-50);
+            robot.lifter.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            robot.lifter.setPower(0.6);
+            robot.lifter.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         }
 
         // robot.lifter.setPower(lifterPower);
@@ -192,7 +198,23 @@ public class TeleScrim2 extends OpMode {
         telemetry.addData("back left ticks", robot.backLeftMotor.getCurrentPosition());
         telemetry.addData("front right ticks", robot.frontRightMotor.getCurrentPosition());
         telemetry.addData("back right ticks", robot.backRightMotor.getCurrentPosition());
+        telemetry.addData("intake power", drive.intake.getPower());
+        telemetry.addData("intake encoder", drive.intake.getCurrentPosition());
 
+        // Print pose to telemetry
+        telemetry.addData("x", poseEstimate.getX());
+        telemetry.addData("y", poseEstimate.getY());
+        telemetry.addData("heading", poseEstimate.getHeading());
+        telemetry.addData("FL Encoder", drive.leftFront.getCurrentPosition());
+        telemetry.addData("RL Encoder", drive.leftRear.getCurrentPosition());
+        telemetry.addData("FR Encoder", drive.leftFront.getCurrentPosition());
+        telemetry.addData("RR Encoder", drive.leftRear.getCurrentPosition());
+        telemetry.addData("FL Power", drive.leftFront.getPower());
+        telemetry.addData("RL Power", drive.leftRear.getPower());
+        telemetry.addData("FR Power", drive.leftFront.getPower());
+        telemetry.addData("RR Power", drive.leftRear.getPower());
+
+        telemetry.update();
         //telemetry.addData("right encoder", robot.rightEncoder.getCurrentPosition());
         //telemetry.addData("left encoder", robot.leftEncoder.getCurrentPosition());
         //telemetry.addData("lateral encoder", robot.frontEncoder.getCurrentPosition());

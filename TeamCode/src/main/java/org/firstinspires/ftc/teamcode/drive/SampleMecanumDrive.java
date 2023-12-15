@@ -72,10 +72,10 @@ public class SampleMecanumDrive extends MecanumDrive {
 
     private TrajectoryFollower follower;
 
-    public DcMotorEx leftFront, leftRear, rightRear, rightFront, intakeMotor;
+    public DcMotorEx leftFront, leftRear, rightRear, rightFront, intake, lifter;
     private List<DcMotorEx> motors;
 
-    public Servo drone, intake;
+    public Servo elbow;
 
     private IMU imu;
     private VoltageSensor batteryVoltageSensor;
@@ -108,13 +108,17 @@ public class SampleMecanumDrive extends MecanumDrive {
         rightRear = hardwareMap.get(DcMotorEx.class, "rightRear");
         rightFront = hardwareMap.get(DcMotorEx.class, "rightFront");
 
-        intakeMotor = hardwareMap.get(DcMotorEx.class, "intakeMotor");
+        lifter = hardwareMap.get(DcMotorEx.class, "lifter");
 
-        leftFront.setDirection(DcMotorSimple.Direction.REVERSE);
-        leftRear.setDirection(DcMotorSimple.Direction.REVERSE);
+        intake = hardwareMap.get(DcMotorEx.class, "intake");
 
-        drone = hardwareMap.get(Servo.class, "droneServo");
-        intake = hardwareMap.get(Servo.class, "intake_servo");
+        elbow = hardwareMap.get(Servo.class, "elbowServo");
+
+        //leftFront.setDirection(DcMotorSimple.Direction.REVERSE);
+        //leftRear.setDirection(DcMotorSimple.Direction.REVERSE);
+
+        //drone = hardwareMap.get(Servo.class, "droneServo");
+        //intake = hardwareMap.get(Servo.class, "intake_servo");
 
         motors = Arrays.asList(leftFront, leftRear, rightRear, rightFront);
 

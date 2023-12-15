@@ -36,7 +36,7 @@ import org.openftc.easyopencv.OpenCvCameraRotation;
 
 import java.util.ArrayList;
 
-
+@Disabled
 @Autonomous(name="LeftClose", group = "motion")
 public class LeftClose extends LinearOpMode{
     RobotCenterStage robot = new RobotCenterStage();

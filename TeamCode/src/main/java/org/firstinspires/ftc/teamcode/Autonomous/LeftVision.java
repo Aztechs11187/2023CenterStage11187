@@ -10,6 +10,7 @@ import org.firstinspires.ftc.vision.VisionPortal;
 import org.opencv.core.Scalar;
 
  // remove this line to have this show up on your robot
+
 @Autonomous(name="Vision", group = "motion")
 public class LeftVision extends OpMode {
     private VisionPortal visionPortal;
@@ -28,8 +29,8 @@ public class LeftVision extends OpMode {
         // the domains are: ([0, 180], [0, 255], [0, 255])
         // this is tuned to detect red, so you will need to experiment to fine tune it for your robot
         // and experiment to fine tune it for blue
-        Scalar lower = new Scalar(87, 89, 35); // the lower hsv threshold for your detection
-        Scalar upper = new Scalar(151, 245, 252); // the upper hsv threshold for your detection
+        Scalar lower = new Scalar(150, 80, 30); // the lower hsv threshold for your detection
+        Scalar upper = new Scalar(180, 255, 215); // the upper hsv threshold for your detection
         double minArea = 100; // the minimum area for the detection to consider for your prop
 
         colourMassDetectionProcessor = new ZoneDetectionPipeline(

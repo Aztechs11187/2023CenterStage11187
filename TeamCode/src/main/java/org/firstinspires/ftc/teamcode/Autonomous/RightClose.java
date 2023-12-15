@@ -30,7 +30,7 @@ import org.firstinspires.ftc.teamcode.RobotCenterStage;
 //import org.firstinspires.ftc.teamcode.pipelines.AprilTagDetectionPipeline;
 
 
-
+@Disabled
 @Autonomous(name="RightClose", group = "motion")
 public class RightClose extends LinearOpMode{
     RobotCenterStage robot = new RobotCenterStage();
